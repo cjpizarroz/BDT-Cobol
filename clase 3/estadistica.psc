@@ -12,10 +12,10 @@ Algoritmo escuela
 		Escribir 'Curso ',i
 		Escribir 'Ingrese nombre del Alumno o fin para terminar carga del curso:'
 		Leer nombre
-		Mientras nombre<>'fin' Hacer
+		Mientras nombre<>'FIN' Hacer
 			carga(sexo,resp)
 			Si sexo='M' Entonces
-				Si resp='s' Entonces
+				Si resp='S' Entonces
 					acumular(muj_ok)
 				FinSi
 				acumular(c_muj)
@@ -23,20 +23,20 @@ Algoritmo escuela
 				acumular(c_homb)
 			FinSi
 			Escribir 'Curso ',i
-			Escribir 'Ingrese nombre del Alumno o fin para terminar carga del curso'
+			Escribir 'Ingrese nombre del Alumno o FIN para terminar carga del curso'
 			Leer nombre
 		FinMientras
 		acum_t(t_homb,c_homb)
 		acum_t(t_muj,c_muj)
 		acum_t(t_muj_ok,muj_ok)
-		Escribir 'El porcntaje de mujeres del curso es: ',(c_muj*100)/(c_homb+c_muj)
-		Escribir 'Porcentaje de mujeres de acuerdo con el nivel del curso es: ',(muj_ok*100)/c_muj
+		Escribir 'El porcEntaje de mujeres del curso es: ',(c_muj*100)/(c_homb+c_muj)," %"
+		Escribir 'Porcentaje de mujeres de acuerdo con el nivel del curso es: ',(muj_ok*100)/(t_muj)
 	FinPara
 	Escribir '*******************************************'
-	Escribir 'Cantidad de varones de los ',i,' cursos :',t_homb
-	Escribir 'Cantidad de mujeres de los ',i,' cursos: ',t_muj
+	Escribir 'Cantidad de varones del curso :',t_homb
+	Escribir 'Cantidad de mujeres del curso : ',t_muj
 	Escribir 'Porcentaje de mujeres del total del alumnado: ',(t_muj*100)/(t_homb+t_muj)
-	Escribir 'Porcentaje de mujeres totales de acuerdo con el nivel del curso es: ',t_muj_ok*100/t_muj
+	Escribir 'Porcentaje de mujeres totales de acuerdo con el nivel del curso es: ',(t_muj_ok*100)/(t_muj)
 FinAlgoritmo
 
 Funcion inicio (val por Referencia)
