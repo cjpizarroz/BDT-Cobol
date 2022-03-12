@@ -1,49 +1,54 @@
 Algoritmo escuela
 	// Sala 4 - Cobolocos
-	Definir c_homb,c_muj,t_homb,t_muj,muj_ok,t_muj_ok,i Como Entero
+	Definir i Como Entero
+	// Seccion General
+	Definir t_homb,t_muj,t_muj_ok Como Entero
+	// Seccion para un curso
+	Definir c_homb,c_muj,muj_ok Como Entero
+	Definir nombre,c_msj1,c_msj2,t_msj1,t_msj2 Como Caracter
 	Definir sexo,resp Como Caracter
-	inicio(t_homb)
-	inicio(t_muj)
-	inicio(tp_mu_ok)
+	inicio(t_homb,t_muj,tp_mu_ok)
+	mensajes(c_msj1,c_msj2,t_msj1,t_msj2)
 	Para i<-1 Hasta 2 Hacer
-		inicio(c_homb)
-		inicio(c_muj)
-		inicio(muj_ok)
+		inicio(c_homb,c_muj,muj_ok)
+		Escribir '--------------------------------------------------------------------'
 		Escribir 'Curso ',i
-		Escribir 'Ingrese nombre del Alumno o fin para terminar carga del curso:'
+		Escribir 'Ingrese nombre del Alumno o FIN para terminar carga del curso:'
 		Leer nombre
 		Mientras nombre<>'FIN' Hacer
 			carga(sexo,resp)
 			Si sexo='M' Entonces
 				Si resp='S' Entonces
-					acumular(muj_ok)
+					muj_ok = muj_ok +1
 				FinSi
-				acumular(c_muj)
+				c_muj = c_muj +1
 			SiNo
-				acumular(c_homb)
+				c_homb = c_homb +1
 			FinSi
 			Escribir 'Curso ',i
 			Escribir 'Ingrese nombre del Alumno o FIN para terminar carga del curso'
 			Leer nombre
 		FinMientras
-		acum_t(t_homb,c_homb)
-		acum_t(t_muj,c_muj)
-		acum_t(t_muj_ok,muj_ok)
-		Escribir 'El porcEntaje de mujeres del curso es: ',(c_muj*100)/(c_homb+c_muj)," %"
-		Escribir 'Porcentaje de mujeres de acuerdo con el nivel del curso es: ',(muj_ok*100)/(t_muj)
+		t_homb = t_homb + c_hom
+		t_muj = t_muj + c_muj
+		t_muj_ok =  t_muj_ok + muj_ok
+		// Verificaciones y Final de cada curso
+		verificacion(c_homb,c_muj,muj_ok,c_msj1,c_msj2)
+		Escribir '*******************************************'
 	FinPara
-	Escribir '*******************************************'
-	Escribir 'Cantidad de varones del curso :',t_homb
-	Escribir 'Cantidad de mujeres del curso : ',t_muj
-	Escribir 'Porcentaje de mujeres del total del alumnado: ',(t_muj*100)/(t_homb+t_muj)
-	Escribir 'Porcentaje de mujeres totales de acuerdo con el nivel del curso es: ',(t_muj_ok*100)/(t_muj)
+	// Verificaciones y Final General
+	Escribir 'Cantidad de varones totales :',t_homb
+	Escribir 'Cantidad de mujeres totales : ',t_muj
+	verificacion(t_homb,t_muj,t_muj_ok,t_msj1,t_msj2)
 FinAlgoritmo
 
-Funcion inicio (val por Referencia)
+Funcion inicio (val Por Referencia,val1 Por Referencia,val2 Por Referencia)
 	val <- 0
+	val1 <- 0
+	val2 <- 0
 FinFuncion
 
-Funcion carga(sex por Referencia,opc por Referencia)
+Funcion carga(sex Por Referencia,opc Por Referencia)
 	Escribir 'Ingrese sexo del Alumno  (H- hombre o M- mujer)'
 	Leer sex
 	Mientras sex<>'M' Y sex<>'H' Hacer
@@ -58,10 +63,22 @@ Funcion carga(sex por Referencia,opc por Referencia)
 	FinMientras
 FinFuncion
 
-Funcion acumular(val por Referencia)
-	val <- val+1
+Funcion verificacion(val1,val2,val3,c_msj1,c_msj2)
+	Si (val1+val2)=0 Entonces
+		Escribir 'El curso no tiene alumnos'
+	SiNo
+		Escribir c_msj1,(val2*100)/(val1+val2),' %'
+	FinSi
+	Si val2=0 Entonces
+		Escribir 'El curso no tiene mujeres de acuerdo con el nivel del curso'
+	SiNo
+		Escribir c_msj2,(val3*100)/(val2),' %'
+	FinSi
 FinFuncion
 
-Funcion acum_t(val1 por Referencia,val2)
-	val1 <- val1+val2
+Funcion mensajes(c_msj1 Por Referencia,c_msj2 Por Referencia,t_msj1 Por Referencia,t_msj2 Por Referencia)
+	c_msj1 <- 'El porcentaje de mujeres del curso es: '
+	c_msj2 <- 'Porcentaje de mujeres de acuerdo con el nivel del curso es: '
+	t_msj1 <- 'Porcentaje de mujeres del total del alumnado: '
+	t_msj2 <- 'Porcentaje de mujeres totales de acuerdo con el nivel del curso es: '
 FinFuncion
