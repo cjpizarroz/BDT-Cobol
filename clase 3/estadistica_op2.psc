@@ -11,6 +11,7 @@ Algoritmo escuela
 	inicio(t_homb,t_muj,tp_mu_ok)
 	mensajes(c_msj1,c_msj2,t_msj1,t_msj2,o_msj1,o_msj2,o_msj3)
 	Repetir
+		cont_Anios <- cont_Anios+1
 		Escribir '<<<<<<<<<< ',cont_Anios,' Año consultado ','>>>>>>>>>>'
 		Para i<-1 Hasta 2 Hacer
 			inicio(c_homb,c_muj,muj_ok)
@@ -35,16 +36,15 @@ Algoritmo escuela
 			FinMientras
 			t_homb <- t_homb+c_homb
 			t_muj <- t_muj+c_muj
-			t_muj_po <- t_muj_ok+muj_ok
+			t_muj_ok <- t_muj_ok+muj_ok
 			// Verificaciones y Final de cada curso
 			verificacion(c_homb,c_muj,muj_ok,c_msj1,c_msj2)
 		FinPara
 		carga_consulta(o_msj3,resp)
-		cont_Anios <- cont_Anios+1
 	Hasta Que resp='N'
 	Escribir '*******************************************'
 	// Verificaciones y Final General
-	Escribir "Cantidad de años consultados: ", cont_Anios
+	Escribir 'Cantidad de años consultados: ',cont_Anios
 	Escribir 'Cantidad de varones totales :',t_homb
 	Escribir 'Cantidad de mujeres totales : ',t_muj
 	verificacion(t_homb,t_muj,t_muj_ok,t_msj1,t_msj2)
@@ -98,5 +98,5 @@ Funcion carga_consulta(msj,opc por Referencia)
 FinFuncion
 
 Funcion iniciar(val por Referencia)
-	val <- 1
+	val <- 0
 FinFuncion
