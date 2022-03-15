@@ -22,14 +22,8 @@ Algoritmo escuela
 			Mientras nombre<>'FIN' Hacer
 				carga(genero,o_msj1)
 				carga_consulta(o_msj2,resp)
-				Si genero='M' Entonces
-					Si resp='S' Entonces
-						muj_ok <- muj_ok+1
-					FinSi
-					c_muj <- c_muj+1
-				SiNo
-					c_homb <- c_homb+1
-				FinSi
+				procesos(genero, c_homb, c_muj, muj_ok, resp)
+				
 				Escribir 'Curso ',i
 				Escribir 'Ingrese nombre del Alumno o FIN para terminar carga del curso'
 				Leer nombre
@@ -99,4 +93,15 @@ FinFuncion
 
 Funcion iniciar(val por Referencia)
 	val <- 0
+FinFuncion
+
+Funcion procesos(genero, c_homb por Referencia, c_muj por Referencia, muj_ok por Referencia, resp)
+	Si genero='M' Entonces
+		Si resp='S' Entonces
+			muj_ok <- muj_ok+1
+		FinSi
+		c_muj <- c_muj+1
+	SiNo
+		c_homb <- c_homb+1
+	FinSi
 FinFuncion
