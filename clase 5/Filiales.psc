@@ -4,8 +4,8 @@ Algoritmo Filiales
 	// Definicion variables Modulo VENDEDOR
 	Definir ven_can_ventas,ven_acu_monto,ven_leg_can,ven_leg_monto,mayMonto,mayCventas Como Entero
 	inicio(ven_can_ventas,ven_acu_monto,ven_leg_can,ven_leg_monto,mayMonto,mayCventas)
-	legajo = 0
-	legProv = 0
+	legajo <- 0
+	legProv <- 0
 	ingresoLegajo(legajo)
 	legProv <- legajo
 	Mientras legajo<>0 Hacer
@@ -13,7 +13,7 @@ Algoritmo Filiales
 		procesoMay(ven_acu_monto,mayMonto,ven_leg_monto,legProv)
 		procesoMay(ven_can_ventas,mayCventas,ven_leg_can,legProv)
 		ingresoLegajo(legajo)
-		Si legProv < legajo Entonces
+		Si legProv<legajo Entonces
 			ven_acu_monto <- 0
 			ven_can_ventas <- 0
 			legProv <- legajo
@@ -38,7 +38,7 @@ Funcion Validar(val por Referencia)
 FinFuncion
 
 Funcion ingresoLegajo(val por Referencia)
-	Escribir 'Ingrese legajo'
+	Escribir 'Ingrese legajo o cero(0) para terminar'
 	Leer val
 	Validar(val)
 FinFuncion
