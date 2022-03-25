@@ -9,7 +9,7 @@
        DATA DIVISION.
        FILE SECTION.
        WORKING-STORAGE SECTION.
-       01  acuMonto PIC    9(6).
+       01  acuMontoGen PIC    9(6).
        01  plata   PIC     S9(5).
        01  i       PIC     9.
        01  cant    PIC     9(2).
@@ -19,8 +19,8 @@
        PROCEDURE DIVISION.
        MAIN-PROCEDURE.
             PERFORM inicio
-            PERFORM ciclo VARYING i FROM 1 by 1 until i > cant
-            PERFORM finprograma
+            PERFORM cicloGen VARYING i FROM 1 by 1 until i > cant
+            PERFORM finCicloGen
 
             STOP RUN.
 
@@ -28,38 +28,42 @@
            DISPLAY"Ingreso de plata para regalo de cumpleañeros del mes"
            DISPLAY"Ingrese cuanto compañeros cumplen años este mes"
            ACCEPT cant
-           MOVE ZEROS to acuMonto.
+           MOVE ZEROS to acuMontoGen.
+           MOVE ZEROES to acuComp.
+
+       datos.
+           DISPLAY"Ingrese el nombre del compañero ",i
+           ACCEPT nombre.
 
        ingreso.
            DISPLAY"Para compañero ",i, " - ",nombre
            DISPLAY"Ingrese su aporte o cero (0) para terminar"
            ACCEPT plata.
 
-       proceso.
+       cicloGen.
+           PERFORM datos
+           PERFORM ingreso
+           PERFORM cicloIndiv UNTIL plata = 0.
+           PERFORM FinCicloIndiv.
+
+       cicloIndiv.
            PERFORM validar UNTIL plata > 0
            ADD plata to acuComp
-
            PERFORM ingreso.
 
-       finprograma.
+       FinCicloIndiv.
+           DISPLAY"Total juntado para ",nombre, "es de ",
+           acuComp, " pesos"
+           ADD acuComp to acuMontoGen
+           MOVE ZEROS to acuComp.
+
+       finCicloGen.
            DISPLAY"El total recaudado para los cumpleañeros es de",
-           acuMonto, " pesos".
+           acuMontoGen, " pesos".
 
        validar.
            DISPLAY"Noooo podes sacar plata -- ¡¡¡ Vamos de vuelta !!!"
            PERFORM ingreso.
 
-       ciclo.
-           PERFORM datos
-           PERFORM ingreso
-           PERFORM proceso UNTIL plata = 0.
-           DISPLAY"Total juntado para ",nombre, "es de ",
-           acuComp, " pesos"
-           ADD acuComp to acuMonto
-           MOVE ZEROS to acuComp.
-
-       datos.
-           DISPLAY"Ingrese el nombre del compañero ",i
-           ACCEPT nombre.
 
        END PROGRAM dinero.
