@@ -15,6 +15,8 @@
        01  cant    PIC     9(2).
        01  acuComp PIC     9(5).
        01  nombre  PIC     x(15).
+       01  nombMayRec  PIC x(15).
+       01  monMayRec   PIC 9(5).
 
        PROCEDURE DIVISION.
        MAIN-PROCEDURE.
@@ -29,7 +31,8 @@
            DISPLAY"Ingrese cuanto compañeros cumplen años este mes"
            ACCEPT cant
            MOVE ZEROS to acuMontoGen.
-           MOVE ZEROES to acuComp.
+           MOVE ZEROS to acuComp.
+           MOVE ZEROS to monMayRec.
 
        datos.
            DISPLAY"Ingrese el nombre del compañero ",i
@@ -54,16 +57,23 @@
        FinCicloIndiv.
            DISPLAY"Total juntado para ",nombre, "es de ",
            acuComp, " pesos"
+           PERFORM mayorRec
            ADD acuComp to acuMontoGen
            MOVE ZEROS to acuComp.
 
        finCicloGen.
            DISPLAY"El total recaudado para los cumpleañeros es de",
            acuMontoGen, " pesos".
+           DISPLAY "El compañero que recaudo mas dinero es: "
+           nombMayRec " con un total de : $ " monMayRec.
 
        validar.
            DISPLAY"Noooo podes sacar plata -- ¡¡¡ Vamos de vuelta !!!"
            PERFORM ingreso.
 
+       mayorRec.
+           if acuComp > monMayRec
+               MOVE acuComp to monMayRec
+               MOVE nombre to nombMayRec.
 
        END PROGRAM dinero.
