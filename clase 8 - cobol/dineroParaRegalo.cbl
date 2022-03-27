@@ -1,5 +1,5 @@
       ******************************************************************
-      * Author:
+      * Author: Sala 4 - Carlos Javier  Pizarro
       * Date:
       * Purpose:
       * Tectonics: cobc
@@ -30,9 +30,7 @@
            DISPLAY"Ingreso de plata para regalo de cumpleañeros del mes"
            DISPLAY"Ingrese cuanto compañeros cumplen años este mes"
            ACCEPT cant
-           MOVE ZEROS to acuMontoGen.
-           MOVE ZEROS to acuComp.
-           MOVE ZEROS to monMayRec.
+           MOVE ZEROS to acuMontoGen acuComp monMayRec.
 
        datos.
            DISPLAY"Ingrese el nombre del compañero ",i

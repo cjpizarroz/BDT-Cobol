@@ -1,5 +1,5 @@
       ******************************************************************
-      * Author:
+      * Author: Sala 4 - Carlos Javier  Pizarro
       * Date:
       * Purpose:
       * Tectonics: cobc
@@ -9,10 +9,10 @@
        DATA DIVISION.
        FILE SECTION.
        WORKING-STORAGE SECTION.
-       01  acuMontoGen PIC    9(6).
+       01  acuMontoGen PIC 9(6).
        01  plata   PIC     S9(5).
        01  i       PIC     9.
-       01  cant    PIC     9(2).
+       01  cant    PIC     S9(2).
        01  acuComp PIC     9(5).
        01  nombre  PIC     x(15).
        01  nombMayRec  PIC x(15).
@@ -30,9 +30,7 @@
            DISPLAY"Ingreso de plata para regalo de cumpleañeros del mes"
            DISPLAY"Ingrese cuanto compañeros cumplen años este mes"
            ACCEPT cant
-           MOVE ZEROS to acuMontoGen.
-           MOVE ZEROS to acuComp.
-           MOVE ZEROS to monMayRec.
+           MOVE ZEROS to acuMontoGen acuComp monMayRec.
 
        datos.
            DISPLAY"Ingrese el nombre del compañero ",i
@@ -65,7 +63,7 @@
            DISPLAY"El total recaudado para los cumpleañeros es de",
            acuMontoGen, " pesos".
            DISPLAY "El compañero que recaudo mas dinero es: "
-           nombMayRec " con un total de : $ " monMayRec.
+           nombMayRec " con un total de : $" monMayRec.
 
        validar.
            DISPLAY"Noooo podes sacar plata -- ¡¡¡ Vamos de vuelta !!!"
